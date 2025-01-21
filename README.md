@@ -1,48 +1,27 @@
-# ApiCheck
-API de Verificação de Disponibilidade de Sites
+
+##API de Verificação de Disponibilidade de Sites
 Descrição
-Esta API permite verificar a acessibilidade de um site fornecido por meio de sua URL. Ao realizar uma requisição HTTP, a API retorna informações sobre o status do site, indicando se ele está acessível ou não.
+Esta API verifica a acessibilidade de qualquer site fornecido por meio de sua URL. Ela realiza uma requisição HTTP para o endereço informado e retorna informações sobre o status do site, indicando se ele está funcionando ou se houve algum problema ao acessá-lo.
 
-Funcionalidades Principais
-Verificar disponibilidade: Confirma se o site está funcionando e acessível, retornando o status HTTP.
-Erro detalhado: Em caso de falha na verificação, fornece uma mensagem explicativa sobre o erro encontrado.
-Resposta rápida: Limita o tempo de espera para evitar travamentos em caso de sites lentos.
-Rotas Disponíveis
-GET /check-site
-Verifica o status de um site.
+A API foi construída usando FastAPI, garantindo alta performance e facilidade de uso, sendo ideal para monitoramento simples de sites ou integração em sistemas maiores.
 
-Parâmetro de consulta:
-
-url (obrigatório): A URL do site a ser verificado. Exemplo: https://www.example.com
-Resposta de Sucesso (200):
-
-Retorna uma mensagem indicando que o site está funcionando.
-Estrutura:
-json
-Copiar
-Editar
-{
-    "status": "Site está funcionando!",
-    "url": "https://www.example.com"
-}
-Resposta de Erro (400):
-
-Retorna uma mensagem indicando que houve um problema ao acessar o site.
-Estrutura:
-json
-Copiar
-Editar
-{
-    "detail": "Erro ao acessar o site: <detalhes do erro>"
-}
-Exemplo de Uso
-Realizar uma requisição GET para a URL:
-
+Recursos
+Verificação de Disponibilidade: Realiza uma consulta a um site para determinar se ele está acessível.
+Mensagens Detalhadas: Retorna informações sobre o status do site ou o motivo de falha.
+Rápida Configuração: Fácil de instalar e configurar, pronta para uso local ou em servidores.
+Como Usar
+Requisição
+Método: GET
+Endpoint: /check-site
+Parâmetros de consulta:
+url (obrigatório): A URL do site a ser verificado. Deve incluir o protocolo (http ou https).
+Exemplo de Requisição
 bash
 Copiar
 Editar
-http://127.0.0.1:8000/check-site?url=https://www.google.com
-Resposta de Sucesso:
+curl -X GET "http://127.0.0.1:8000/check-site?url=https://www.google.com"
+Exemplo de Respostas
+Sucesso (200):
 
 json
 Copiar
@@ -51,16 +30,40 @@ Editar
     "status": "Site está funcionando!",
     "url": "https://www.google.com"
 }
-Resposta de Erro (exemplo de site inacessível):
+Erro (400):
 
 json
 Copiar
 Editar
 {
-    "detail": "Erro ao acessar o site: HTTPSConnectionPool(host='invalid-url', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x...>: Failed to establish a new connection: [Errno -2] Name or service not known'))"
+    "detail": "Erro ao acessar o site: HTTPSConnectionPool(host='invalid-url', port=443): Max retries exceeded with url: /"
 }
-Benefícios
-Simples e intuitiva: Pode ser usada por desenvolvedores, sistemas automatizados ou ferramentas de monitoramento.
-Personalizável: Fácil de ajustar para incluir métricas adicionais, como tempo de resposta ou cabeçalhos HTTP.
-Documentação integrada: Acesse a interface Swagger em http://127.0.0.1:8000/docs para explorar a API.
-Essa API é ideal para monitorar sites, verificar problemas de conectividade ou ser usada como base para soluções mais complexas de monitoramento.
+Instalação
+Certifique-se de ter o Python 3.7+ instalado.
+Clone este repositório:
+bash
+Copiar
+Editar
+git clone <url-do-repositorio>
+cd <nome-do-repositorio>
+Instale as dependências:
+bash
+Copiar
+Editar
+pip install -r requirements.txt
+Inicie o servidor:
+bash
+Copiar
+Editar
+uvicorn main:app --reload
+Acesse a API no navegador: http://127.0.0.1:8000.
+Documentação Interativa
+A API inclui uma interface Swagger para facilitar a exploração:
+
+Documentação interativa: http://127.0.0.1:8000/docs
+Especificações OpenAPI: http://127.0.0.1:8000/openapi.json
+Contribuição
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests para adicionar funcionalidades, corrigir bugs ou melhorar a documentação.
+
+Licença
+Este projeto está licenciado sob a licença MIT. Consulte o arquivo LICENSE para mais detalhes.
