@@ -1,4 +1,4 @@
-#API de Verificação de Disponibilidade de Sites
+#ApiChech de Verificação de Disponibilidade de Sites
 Descrição
 Esta API verifica a acessibilidade de qualquer site fornecido por meio de sua URL. Ela realiza uma requisição HTTP para o endereço informado e retorna informações sobre o status do site, indicando se ele está funcionando ou se houve algum problema ao acessá-lo.
 
